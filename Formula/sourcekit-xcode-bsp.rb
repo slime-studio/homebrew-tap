@@ -1,12 +1,12 @@
 class SourcekitXcodeBsp < Formula
   desc "Build Server Protocol server for Xcode projects"
-  homepage "https://github.com/tideline-studio/sourcekit-xcode-bsp"
+  homepage "https://github.com/slime-studio/sourcekit-xcode-bsp"
   url "https://github.com/slime-studio/sourcekit-xcode-bsp/archive/refs/tags/0.0.7.tar.gz"
   sha256 "1a3c6d9f0b481a3649b98baf87dec8786a08fc30526d56efa5d3cbb8ac4e9c00"
   license "Apache-2.0"
-  head "https://github.com/tideline-studio/sourcekit-xcode-bsp.git", branch: "main"
+  head "https://github.com/slime-studio/sourcekit-xcode-bsp.git", branch: "main"
 
-  depends_on xcode: ["16.0", :build]
+  depends_on xcode: ["26.0", :build]
   depends_on macos: :sequoia
 
   def install
