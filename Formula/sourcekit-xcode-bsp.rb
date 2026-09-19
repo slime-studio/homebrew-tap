@@ -1,28 +1,26 @@
 class SourcekitXcodeBsp < Formula
   desc "Build Server Protocol server for Xcode projects"
   homepage "https://github.com/slime-studio/sourcekit-xcode-bsp"
-  url "https://github.com/slime-studio/sourcekit-xcode-bsp/archive/refs/tags/0.0.7.tar.gz"
-  sha256 "1a3c6d9f0b481a3649b98baf87dec8786a08fc30526d56efa5d3cbb8ac4e9c00"
+  url "https://github.com/slime-studio/sourcekit-xcode-bsp/releases/download/0.1.0/sourcekit-xcode-bsp-0.1.0-macos.tar.gz"
+  sha256 "REPLACED_BY_RELEASE_WORKFLOW"
   license "Apache-2.0"
-  head "https://github.com/slime-studio/sourcekit-xcode-bsp.git", branch: "main"
 
-  depends_on xcode: ["26.0", :build]
   depends_on macos: :sequoia
 
+  head do
+    url "https://github.com/slime-studio/sourcekit-xcode-bsp.git", branch: "main"
+    depends_on xcode: ["26.0", :build]
+  end
+
   def install
-    system "swift", "build", "--configuration", "release", "--disable-sandbox"
-    libexec.install ".build/release/sourcekit-xcode-bsp"
-    libexec.install ".build/release/SWBBuildServiceBundle"
-    %w[
-      SwiftBuild_SWBAndroidPlatform
-      SwiftBuild_SWBApplePlatform
-      SwiftBuild_SWBCore
-      SwiftBuild_SWBGenericUnixPlatform
-      SwiftBuild_SWBQNXPlatform
-      SwiftBuild_SWBUniversalPlatform
-      SwiftBuild_SWBWebAssemblyPlatform
-      SwiftBuild_SWBWindowsPlatform
-    ].each { |b| cp_r ".build/release/#{b}.bundle", libexec }
+    if build.head?
+      system "swift", "build", "--configuration", "release", "--disable-sandbox"
+      libexec.install ".build/release/sourcekit-xcode-bsp"
+      libexec.install ".build/release/SWBBuildServiceBundle"
+      Dir.glob(".build/release/*.bundle").each { |b| cp_r b, libexec }
+    else
+      libexec.install Dir["*"]
+    end
     bin.write_exec_script libexec/"sourcekit-xcode-bsp"
   end
 
