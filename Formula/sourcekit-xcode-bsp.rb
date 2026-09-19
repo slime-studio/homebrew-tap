@@ -2,7 +2,7 @@ class SourcekitXcodeBsp < Formula
   desc "Build Server Protocol server for Xcode projects"
   homepage "https://github.com/slime-studio/sourcekit-xcode-bsp"
   url "https://github.com/slime-studio/sourcekit-xcode-bsp/releases/download/0.1.0/sourcekit-xcode-bsp-0.1.0-macos.tar.gz"
-  sha256 "REPLACED_BY_RELEASE_WORKFLOW"
+  sha256 "7f8ef7a64ef1118ff55d8ca705a9cfc0cd945335a37cae3fb4c5dac28d42b7a0"
   license "Apache-2.0"
 
   depends_on macos: :sequoia
